@@ -12,6 +12,9 @@ const { prefix } = config
 const { Header, Bread, Footer, Sider, styles } = Layout
 let lastHref
 
+import { LocaleProvider } from 'antd';
+import RU from 'antd/lib/locale-provider/ru_RU';
+
 const App = ({ children, location, dispatch, app, loading }) => {
   const { user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys } = app
   const href = window.location.href
@@ -72,30 +75,32 @@ const App = ({ children, location, dispatch, app, loading }) => {
   const { iconFontJS, iconFontCSS, logo } = config
 
   return (
-    <div>
-      <Helmet>
-        <title>ANTD ADMIN</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href={logo} type="image/x-icon" />
-        {iconFontJS && <script src={iconFontJS}></script>}
-        {iconFontCSS && <link rel="stylesheet" href={iconFontCSS} />}
-      </Helmet>
-      <div className={classnames(styles.layout, { [styles.fold]: isNavbar ? false : siderFold }, { [styles.withnavbar]: isNavbar })}>
-        {!isNavbar ? <aside className={classnames(styles.sider, { [styles.light]: !darkTheme })}>
-          <Sider {...siderProps} />
-        </aside> : ''}
-        <div className={styles.main}>
-          <Header {...headerProps} />
-          <Bread {...breadProps} location={location} />
-          <div className={styles.container}>
-            <div className={styles.content}>
-              {children}
+      <LocaleProvider locale={RU}>
+        <div>
+          <Helmet>
+            <title>ANTD ADMIN</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="icon" href={logo} type="image/x-icon" />
+            {iconFontJS && <script src={iconFontJS}></script>}
+            {iconFontCSS && <link rel="stylesheet" href={iconFontCSS} />}
+          </Helmet>
+          <div className={classnames(styles.layout, { [styles.fold]: isNavbar ? false : siderFold }, { [styles.withnavbar]: isNavbar })}>
+            {!isNavbar ? <aside className={classnames(styles.sider, { [styles.light]: !darkTheme })}>
+              <Sider {...siderProps} />
+            </aside> : ''}
+            <div className={styles.main}>
+              <Header {...headerProps} />
+              <Bread {...breadProps} location={location} />
+              <div className={styles.container}>
+                <div className={styles.content}>
+                  {children}
+                </div>
+              </div>
+              <Footer />
             </div>
           </div>
-          <Footer />
         </div>
-      </div>
-    </div>
+      </LocaleProvider>
   )
 }
 

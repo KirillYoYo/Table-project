@@ -139,6 +139,7 @@ const User = ({ location, dispatch, user, loading }) => {
            </Row>
       }
       <List {...listProps} />
+
       {modalVisible && <Modal {...modalProps} />}
     </div>
   )

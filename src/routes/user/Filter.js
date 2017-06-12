@@ -4,6 +4,7 @@ import moment from 'moment'
 import { FilterItem } from '../../components'
 import { Form, Button, Row, Col, DatePicker, Input, Cascader, Switch } from 'antd'
 import city from '../../utils/city'
+import countries from '../../utils/countries'
 
 const Search = Input.Search
 const { RangePicker } = DatePicker
@@ -77,6 +78,9 @@ const Filter = ({
   if (filter.createTime && filter.createTime[1]) {
     initialCreateTime[1] = moment(filter.createTime[1])
   }
+  console.log('countries')
+  console.log(countries)
+
 
   return (
     <Row gutter={24}>
@@ -88,7 +92,7 @@ const Filter = ({
           <Cascader
             size="large"
             style={{ width: '100%' }}
-            options={city}
+            options={countries}
             placeholder="Please pick an address"
             onChange={handleChange.bind(null, 'address')}
           />)}

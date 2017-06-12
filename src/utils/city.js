@@ -4021,6 +4021,14 @@ let DICT = {
   990100: '海外',
 }
 
+DICT = {
+	810307: '1233',
+	990000: 'Россия',
+	820000: 'Россия123',
+	820100: 'Челябинск123',
+	990100: 'Челябинск',
+}
+
 // id pid/parentId name children
 const tree = (list) => {
   let mapped = {}
@@ -4067,6 +4075,8 @@ let DICT_FIXED = (function () {
       })
     }
   }
+  console.log('tree(fixed)')
+  console.log(tree(fixed))
   return tree(fixed)
 }())
 

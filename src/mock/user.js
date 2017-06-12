@@ -1,7 +1,26 @@
-const qs = require('qs')
-const Mock = require('mockjs')
-const config = require('../utils/config')
-const { apiPrefix } = config
+const qs = require('qs');
+const Mock = require('mockjs');
+const config = require('../utils/config');
+const { apiPrefix } = config;
+
+import countries from '../utils/countries'
+
+// const countrys_arr = [
+//     {
+//       name: 'Russia',
+//       cities: ['Челябинск', 'Волгоград', 'Краснодар', 'Питер', 'Москва', 'новгород', 'Уфа', 'Киров', 'Тюмень', 'павлодар']
+//     },
+// 	{
+// 		name: 'USA',
+// 		cities: ['Texas', 'California', 'WC', 'NY', 'Michigan', 'LA', 'Yota', 'Sprigfield', 'Nano', 'Dollar']
+// 	},
+// ];
+
+let countryForIteration = null;
+let getCountry = () => {
+	countryForIteration = Mock.Random.natural(0, Array.from(countries).length -1);
+    return countryForIteration
+}
 
 let usersListData = Mock.mock({
   'data|80-100': [
@@ -12,6 +31,7 @@ let usersListData = Mock.mock({
       phone: /^1[34578]\d{9}$/,
       'age|11-99': 1,
       address: '@county(true)',
+     // address: null,
       isMale: '@boolean',
       email: '@email',
       createTime: '@datetime',
@@ -21,6 +41,29 @@ let usersListData = Mock.mock({
     },
   ],
 })
+
+
+const addAdress = (function () {
+	for (let key in usersListData.data) {
+	  if (usersListData.data[key]) {
+	    if (countries[getCountry()]) {
+		    usersListData.data[key].address = countries[getCountry()].name;
+		    if (countries[countryForIteration].children[Mock.Random.natural(0, countries[countryForIteration].children.length - 1)]) {
+			    usersListData.data[key].address += "\u00A0" + countries[countryForIteration].children[Mock.Random.natural(0, countries[countryForIteration].children.length - 1)].name
+            }
+        }
+      }
+        // usersListData.data[key] ?
+		 //  usersListData.data[key].address = countries[getCountry()] ? countries[getCountry()].name : 'нет данных'
+        //       + '&nbsp' +
+			//   countries[countryForIteration].children[Mock.Random.natural(0, countries[countryForIteration].children.length - 1)] ?
+        //         countries[countryForIteration].children[Mock.Random.natural(0, countries[countryForIteration].children.length - 1)].name
+        //       : 'нет данных'
+	     //    : null
+	}
+}());
+
+
 
 
 let database = usersListData.data
@@ -139,7 +182,13 @@ module.exports = {
         newData = newData.filter((item) => {
           if ({}.hasOwnProperty.call(item, key)) {
             if (key === 'address') {
-              return other[key].every(iitem => item[key].indexOf(iitem) > -1)
+              if (other[key] !== 'нет данных') {
+	              return other[key].every(iitem => item[key].indexOf(iitem) > -1)
+              } else {
+                  //return ['нет данных']
+                  return ['нет данных'].every(iitem => item[key].indexOf(iitem) > -1)
+              }
+
             } else if (key === 'createTime') {
               const start = new Date(other[key][0]).getTime()
               const end = new Date(other[key][1]).getTime()
@@ -214,6 +263,7 @@ module.exports = {
       }
       return item
     })
+
 
     if (isExist) {
       res.status(201).end()

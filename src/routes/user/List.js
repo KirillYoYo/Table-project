@@ -9,6 +9,8 @@ import { Link } from 'dva/router'
 
 const confirm = Modal.confirm
 
+let new_arr = [];
+
 const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) => {
   const handleMenuClick = (record, e) => {
     if (e.key === '1') {
@@ -24,50 +26,59 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
   }
 
   const columns = [
+    // {
+    //   title: 'Avatar',
+    //   dataIndex: 'avatar',
+    //   key: 'avatar',
+    //   width: 64,
+    //   className: styles.avatar,
+    //   render: (text) => <img alt={'avatar'} width={24} src={text} />,
+    // },
     {
-      title: 'Avatar',
-      dataIndex: 'avatar',
-      key: 'avatar',
-      width: 64,
-      className: styles.avatar,
-      render: (text) => <img alt={'avatar'} width={24} src={text} />,
-    }, {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
       render: (text, record) => <Link to={`user/${record.id}`}>{text}</Link>,
-    }, {
+    },
+    {
       title: 'NickName',
       dataIndex: 'nickName',
       key: 'nickName',
-    }, {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    }, {
-      title: 'Gender',
-      dataIndex: 'isMale',
-      key: 'isMale',
-      render: (text) => <span>{text
-            ? 'Male'
-            : 'Female'}</span>,
-    }, {
-      title: 'Phone',
-      dataIndex: 'phone',
-      key: 'phone',
-    }, {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
-    }, {
+    },
+    // {
+    //   title: 'Age',
+    //   dataIndex: 'age',
+    //   key: 'age',
+    // },
+    // {
+    //   title: 'Gender',
+    //   dataIndex: 'isMale',
+    //   key: 'isMale',
+    //   render: (text) => <span>{text
+    //         ? 'Male'
+    //         : 'Female'}</span>,
+    // },
+    // {
+    //   title: 'Phone',
+    //   dataIndex: 'phone',
+    //   key: 'phone',
+    // },
+    // {
+    //   title: 'Email',
+    //   dataIndex: 'email',
+    //   key: 'email',
+    // },
+    {
       title: 'Address',
       dataIndex: 'address',
       key: 'address',
-    }, {
-      title: 'CreateTime',
-      dataIndex: 'createTime',
-      key: 'createTime',
-    }, {
+    },
+    // {
+    //   title: 'CreateTime',
+    //   dataIndex: 'createTime',
+    //   key: 'createTime',
+    // },
+    {
       title: 'Operation',
       key: 'operation',
       width: 100,

@@ -12,6 +12,7 @@ const confirm = Modal.confirm
 let new_arr = [];
 
 const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) => {
+
   const handleMenuClick = (record, e) => {
     if (e.key === '1') {
       onEditItem(record)
@@ -41,51 +42,29 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
       render: (text, record) => <Link to={`user/${record.id}`}>{text}</Link>,
     },
     {
-      title: 'NickName',
-      dataIndex: 'nickName',
-      key: 'nickName',
+      title: 'Organization',
+      dataIndex: 'organization',
+      key: 'organization',
     },
-    // {
-    //   title: 'Age',
-    //   dataIndex: 'age',
-    //   key: 'age',
-    // },
-    // {
-    //   title: 'Gender',
-    //   dataIndex: 'isMale',
-    //   key: 'isMale',
-    //   render: (text) => <span>{text
-    //         ? 'Male'
-    //         : 'Female'}</span>,
-    // },
-    // {
-    //   title: 'Phone',
-    //   dataIndex: 'phone',
-    //   key: 'phone',
-    // },
-    // {
-    //   title: 'Email',
-    //   dataIndex: 'email',
-    //   key: 'email',
-    // },
     {
       title: 'Address',
       dataIndex: 'address',
       key: 'address',
     },
-    // {
-    //   title: 'CreateTime',
-    //   dataIndex: 'createTime',
-    //   key: 'createTime',
-    // },
     {
-      title: 'Operation',
-      key: 'operation',
-      width: 100,
-      render: (text, record) => {
-        return <DropOption onMenuClick={e => handleMenuClick(record, e)} menuOptions={[{ key: '1', name: 'Update' }, { key: '2', name: 'Delete' }]} />
-      },
+        title: 'Description',
+        dataIndex: 'description',
+        key: 'description',
+	    width: 400,
     },
+    // {
+    //   title: 'Operation',
+    //   key: 'operation',
+    //   width: 100,
+    //   render: (text, record) => {
+    //     return <DropOption onMenuClick={e => handleMenuClick(record, e)} menuOptions={[{ key: '1', name: 'Update' }, { key: '2', name: 'Delete' }]} />
+    //   },
+    // },
   ]
 
   const getBodyWrapperProps = {

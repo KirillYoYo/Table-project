@@ -3,6 +3,9 @@ const Mock = require('mockjs');
 const config = require('../utils/config');
 const { apiPrefix } = config;
 
+const dataForTest = require('../utils/data-for-test');
+
+
 import countries from '../utils/countries'
 
 // const countrys_arr = [
@@ -30,7 +33,7 @@ let usersListData = Mock.mock({
       nickName: '@last',
       phone: /^1[34578]\d{9}$/,
       'age|11-99': 1,
-      address: '@county(true)',
+      //address: '@county(true)',
      // address: null,
       isMale: '@boolean',
       email: '@email',
@@ -42,26 +45,31 @@ let usersListData = Mock.mock({
   ],
 })
 
+//dataForTest
 
-const addAdress = (function () {
+const reformatData = (function () {
 	for (let key in usersListData.data) {
-	  if (usersListData.data[key]) {
-	    if (countries[getCountry()]) {
-		    usersListData.data[key].address = countries[getCountry()].name;
-		    if (countries[countryForIteration].children[Mock.Random.natural(0, countries[countryForIteration].children.length - 1)]) {
-			    usersListData.data[key].address += "\u00A0" + countries[countryForIteration].children[Mock.Random.natural(0, countries[countryForIteration].children.length - 1)].name
-            }
-        }
-      }
-        // usersListData.data[key] ?
-		 //  usersListData.data[key].address = countries[getCountry()] ? countries[getCountry()].name : 'нет данных'
-        //       + '&nbsp' +
-			//   countries[countryForIteration].children[Mock.Random.natural(0, countries[countryForIteration].children.length - 1)] ?
-        //         countries[countryForIteration].children[Mock.Random.natural(0, countries[countryForIteration].children.length - 1)].name
-        //       : 'нет данных'
-	     //    : null
+		if (usersListData.data[key]) {
+			usersListData.data[key] = dataForTest[Mock.Random.natural(0, dataForTest.length -1)];
+			usersListData.data[key].country !== '' ?
+			  usersListData.data[key].address = usersListData.data[key].country + "\u00A0" + usersListData.data[key].city
+            : usersListData.data[key].address = 'нет данных';
+		}
 	}
 }());
+
+// const addAdress = (function () {
+// 	for (let key in usersListData.data) {
+// 	  if (usersListData.data[key]) {
+// 	    if (countries[getCountry()]) {
+// 		    usersListData.data[key].address = countries[getCountry()].name;
+// 		    if (countries[countryForIteration].children[Mock.Random.natural(0, countries[countryForIteration].children.length - 1)]) {
+// 			    usersListData.data[key].address += "\u00A0" + countries[countryForIteration].children[Mock.Random.natural(0, countries[countryForIteration].children.length - 1)].name
+//             }
+//         }
+//       }
+// 	}
+// }());
 
 
 

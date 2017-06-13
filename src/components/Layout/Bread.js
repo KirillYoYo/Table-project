@@ -25,6 +25,8 @@ const Bread = ({ menu }) => {
   }
 
   if (!current) {
+    console.log('menu[0])')
+    console.log(menu[0])
     pathArray.push(menu[0])
     pathArray.push({
       id: 404,
@@ -35,21 +37,24 @@ const Bread = ({ menu }) => {
   }
 
   // 递归查找父级
+
   const breads = pathArray.map((item, key) => {
-    const content = (
-      <span>{item.icon
-          ? <Icon type={item.icon} style={{ marginRight: 4 }} />
-          : ''}{item.name}</span>
-    )
-    return (
-      <Breadcrumb.Item key={key}>
-        {((pathArray.length - 1) !== key)
-          ? <Link to={item.router}>
-              {content}
-          </Link>
-          : content}
-      </Breadcrumb.Item>
-    )
+	  if (item) {
+		  const content = (
+              <span>{item.icon
+				  ? <Icon type={item.icon} style={{marginRight: 4}}/>
+				  : ''}{item.name}</span>
+		  )
+		  return (
+              <Breadcrumb.Item key={key}>
+				  {((pathArray.length - 1) !== key)
+					  ? <Link to={item.router}>
+						  {content}
+                      </Link>
+					  : content}
+              </Breadcrumb.Item>
+		  )
+	  }
   })
 
   return (

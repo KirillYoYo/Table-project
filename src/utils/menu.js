@@ -6,12 +6,12 @@ module.exports = [
 		icon: 'user',
 		router: '/user',
 	},
-  {
-    id: 1,
-    icon: 'laptop',
-    name: 'Dashboard',
-    router: '/dashboard',
-  },
+  // {
+  //   id: 1,
+  //   icon: 'laptop',
+  //   name: 'Dashboard',
+  //   router: '/dashboard',
+  // },
   // {
   //   id: 7,
   //   bpid: 1,

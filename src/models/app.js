@@ -39,12 +39,12 @@ export default {
           type: 'querySuccess',
           payload: data.user,
         })
-        if (location.pathname === '/login') {
+        if (location.pathname === '/login' || location.pathname === '/') {
           yield put(routerRedux.push('/user'))
         }
       } else {
         if (location.pathname !== '/login') {
-          let from = location.pathname
+          let from = location.pathname;
           if (location.pathname === '/user') {
             from = '/user'
           }

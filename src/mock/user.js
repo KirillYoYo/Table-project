@@ -26,7 +26,7 @@ let getCountry = () => {
 }
 
 let usersListData = Mock.mock({
-  'data|80-100': [
+  'data|40-50': [
     {
       id: '@id',
       name: '@name',
@@ -230,7 +230,7 @@ module.exports = {
   [`POST ${apiPrefix}/user`] (req, res) {
     const newData = req.body
     newData.createTime = Mock.mock('@now')
-    newData.avatar = newData.avatar || Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', newData.nickName.substr(0, 1))
+    newData.avatar = newData.avatar || Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', newData.nickName ? newData.nickName.substr(0, 1) : null ) ;
     newData.id = Mock.mock('@id')
 
     database.unshift(newData)

@@ -56,6 +56,13 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
         dataIndex: 'description',
         key: 'description',
 	    width: 400,
+        render: (text, record) => {
+            return <div style={{
+	            // maxHeight: 100,
+	            // overflow: 'hidden',
+	            // textOverflow: 'ellipsis',
+            }} className="td-description">{text}</div>
+        },
     },
     // {
     //   title: 'Operation',

@@ -40,13 +40,13 @@ export default {
           payload: data.user,
         })
         if (location.pathname === '/login' || location.pathname === '/') {
-          yield put(routerRedux.push('/user'))
+          yield put(routerRedux.push('/post'))
         }
       } else {
         if (location.pathname !== '/login') {
           let from = location.pathname;
-          if (location.pathname === '/user') {
-            from = '/user'
+          if (location.pathname === '/post') {
+            from = '/post'
           }
           window.location = `${location.origin}/login?from=${from}`
         }

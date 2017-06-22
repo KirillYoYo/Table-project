@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import {FilterItem} from '../../components'
 import {Form, Button, Row, Col, DatePicker, Input, Cascader, Switch} from 'antd'
-import city from '../../utils/city'
-import countries from '../../utils/countries'
+//import city from '../../utils/city'
+import groups from '../../utils/groups'
 
 const Search = Input.Search
 const {RangePicker} = DatePicker
@@ -83,7 +83,7 @@ const Filter = ({
 	return (
 		<Row gutter={24}>
 			<Col {...ColProps} xl={{span: 4}} md={{span: 8}}>
-				{getFieldDecorator('name', {initialValue: name})(<Search placeholder="Search Name" size="large"
+				{getFieldDecorator('name', {initialValue: name})(<Search placeholder="Поиск по имени" size="large"
 				                                                         onSearch={handleSubmit}/>)}
 			</Col>
 			<Col {...ColProps} xl={{span: 4}} md={{span: 8}}>
@@ -91,12 +91,12 @@ const Filter = ({
 					<Cascader
 						size="large"
 						style={{width: '100%'}}
-						options={countries}
-						placeholder="Please pick an address"
-						onChange={handleChange.bind(null, 'address')}
+						options={groups}
+						placeholder="Фильтр по группе"
+						onChange={handleChange.bind(null, 'group')}
 					/>)}
 			</Col>
-			<Col {...ColProps} xl={{span: 6}} md={{span: 8}} sm={{span: 12}}>
+			<Col {...ColProps} xl={{span: 6}} md={{span: 8}} sm={{span: 12}} style={{display: 'none'}}>
 				<FilterItem label="Createtime">
 					{getFieldDecorator('createTime', {initialValue: initialCreateTime})(
 						<RangePicker style={{width: '100%'}} size="large"

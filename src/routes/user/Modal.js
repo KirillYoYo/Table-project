@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Form, Input, InputNumber, Radio, Modal, Cascader} from 'antd'
-import city from '../../utils/city'
-import counties from '../../utils/countries'
+
+import groups from '../../utils/groups'
 
 const FormItem = Form.Item
 
@@ -57,8 +57,8 @@ const modal = ({
 						],
 					})(<Input />)}
 				</FormItem>
-				<FormItem label="Organization" hasFeedback {...formItemLayout}>
-					{getFieldDecorator('organization', {
+				<FormItem label="LastName" hasFeedback {...formItemLayout}>
+					{getFieldDecorator('lastName', {
 						initialValue: item.organization,
 						rules: [
 							{
@@ -67,29 +67,9 @@ const modal = ({
 						],
 					})(<Input />)}
 				</FormItem>
-				{/*<FormItem label="Address" hasFeedback {...formItemLayout}>*/}
-					{/*{getFieldDecorator('address', {*/}
-						{/*initialValue: item.organization,*/}
-						{/*rules: [*/}
-							{/*{*/}
-								{/*required: false,*/}
-							{/*},*/}
-						{/*],*/}
-					{/*})(<Input />)}*/}
-				{/*</FormItem>*/}
-				<FormItem label="Description" hasFeedback {...formItemLayout}>
-					{getFieldDecorator('description', {
-						initialValue: item.organization,
-						rules: [
-							{
-								required: false,
-							},
-						],
-					})(<Input />)}
-				</FormItem>
 
-				<FormItem label="Address" hasFeedback {...formItemLayout}>
-					{getFieldDecorator('address', {
+				<FormItem label="Group" hasFeedback {...formItemLayout}>
+					{getFieldDecorator('group', {
 						initialValue: item.address && item.address.split(' '),
 						rules: [
 							{
@@ -99,8 +79,8 @@ const modal = ({
 					})(<Cascader
 						size="large"
 						style={{width: '100%'}}
-						options={counties}
-						placeholder="Pick an address"
+						options={groups}
+						placeholder="Select a group"
 					/>)}
 				</FormItem>
 			</Form>

@@ -10,7 +10,7 @@ import groups from '../utils/groups'
 
 
 let usersListData = Mock.mock({
-	'data|40-50': [
+	'data|300-301': [
 		{
 			id: '@id',
 			name: '@name',
